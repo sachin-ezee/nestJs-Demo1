@@ -12,7 +12,7 @@ yarn-error.log
 **/npm-debug.log
 
 # environment
-.env
+# .env
 
 # build
 /dist
