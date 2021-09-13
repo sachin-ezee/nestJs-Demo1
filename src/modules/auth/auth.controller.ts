@@ -1,9 +1,9 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger'; 
 import { AuthService, LoginPayload, RegisterPayload } from './';
 import { CurrentUser } from './../common/decorator/current-user.decorator';
-import { User, UsersService } from './../user';
+import { User, UsersService, LoginLogService } from './../user';
 
 @Controller('api/auth')
 @ApiTags('authentication')
@@ -11,6 +11,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UsersService,
+    private readonly loginLogService: LoginLogService,
   ) {}
 
   @Post('login')
@@ -18,7 +19,8 @@ export class AuthController {
   @ApiResponse({ status: 400, description: 'Bad Request' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   async login(@Body() payload: LoginPayload): Promise<any> {
-    const user = await this.authService.validateUser(payload);
+    const user = await this.authService.validateUser(payload); 
+    await this.loginLogService.addLoginLog(parseInt(JSON.stringify(user.id)));
     return await this.authService.createToken(user);
   }
 
