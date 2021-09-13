@@ -5,7 +5,7 @@ import { AuthService, LoginPayload, RegisterPayload } from './';
 import { CurrentUser } from './../common/decorator/current-user.decorator';
 import { User, UsersService, LoginLogService } from './../user';
 
-@Controller('api/auth')
+@Controller('auth')
 @ApiTags('authentication')
 export class AuthController {
   constructor(
