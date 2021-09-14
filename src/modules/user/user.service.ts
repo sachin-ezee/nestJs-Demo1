@@ -8,9 +8,9 @@ import { User, UserFillableFields } from './user.entity';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
     @InjectRepository(UserTeams)
-    private readonly userTeamRepository: Repository<UserTeams>,
+    private readonly userRepository: Repository<User>,
+   
   ) {}
 
   async get(id: number) {
@@ -46,9 +46,9 @@ export class UsersService {
 
     // SELECT ut.team_id, ut.user_id1, ut.user_id2, ut.team_name, COALESCE(CONCAT(u.firstName,' ', u.lastName), '') as full_name1, COALESCE(CONCAT(u1.firstName,' ', u1.lastName), '') as full_name2 FROM user_team ut LEFT JOIN users u ON u.id = ut.user_id1 LEFT JOIN users u1 ON u1.id = ut.user_id2
 
-    const dailyStatsRaws = await user.getRawMany();
+    const userTeamRaws = await user.getRawMany();
  
-    const dailyStats = dailyStatsRaws.map((s: any) => {
+    const userTeamStats = userTeamRaws.map((s: any) => {
         const item = {
             teamId: s.team_id,
             teamName: s.team_name,
@@ -59,7 +59,7 @@ export class UsersService {
         };
         return item;
     }); 
-    return dailyStats
+    return userTeamStats
   }
 }
 
