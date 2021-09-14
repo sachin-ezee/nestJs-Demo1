@@ -7,9 +7,10 @@ import { User, UserFillableFields } from './user.entity';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User)
-    @InjectRepository(UserTeams)
+    @InjectRepository(User) 
     private readonly userRepository: Repository<User>,
+    @InjectRepository(UserTeams)
+    private readonly userTeamsRepository: Repository<UserTeams>,
    
   ) {}
 
@@ -61,6 +62,36 @@ export class UsersService {
     }); 
     return userTeamStats
   }
+
+  async team2(){
+    
+    const user = await this.userTeamsRepository.createQueryBuilder('userteam')
+     .select([
+      'userteam.team_id AS team_id',
+      'userteam.team_name AS team_name',
+      'userteam.user_id1 AS user_id1',
+      'COALESCE(CONCAT(u.firstName," ", u.lastName), "") AS full_name1',
+      'userteam.user_id2 AS user_id2',
+      'COALESCE(CONCAT(u1.firstName," ", u1.lastName), "") AS full_name2',
+    ])
+    .leftJoin(User, "u", "u.id = userteam.user_id1")
+     .leftJoin(User, "u1", "u1.id = userteam.user_id2")
+     .execute()
+
+   // SELECT ut.team_id, ut.user_id1, ut.user_id2, ut.team_name, COALESCE(CONCAT(u.firstName,' ', u.lastName), '') as full_name1, COALESCE(CONCAT(u1.firstName,' ', u1.lastName), '') as full_name2 FROM user_team ut LEFT JOIN users u ON u.id = ut.user_id1 LEFT JOIN users u1 ON u1.id = ut.user_id2
+   const userTeamStats = user.map((s: any) => {
+       const item = {
+           teamId: s.team_id,
+           teamName: s.team_name,
+           userId1: s.user_id1,
+           fullName1: s.full_name1,
+           userId2: s.user_id2,
+           fullName2: s.full_name2,
+       };
+       return item;
+   }); 
+   return userTeamStats
+ }
 }
 
 

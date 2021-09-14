@@ -40,6 +40,14 @@ export class AuthController {
     return await user;
   }
 
+
+  @Get('userTeam2')
+  @ApiResponse({ status: 201, description: 'Successful Get Users' }) 
+  async team2(): Promise<any> {
+    const user = await this.userService.team2();
+    return await user;
+  }
+
   @ApiBearerAuth()
   @UseGuards(AuthGuard())
   @Get('me')
