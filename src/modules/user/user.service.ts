@@ -65,17 +65,17 @@ export class UsersService {
 
   async team2(){
     
-    const user = await this.userTeamsRepository.createQueryBuilder('userteam')
+    const user = await this.userTeamsRepository.createQueryBuilder('ut')
      .select([
-      'userteam.team_id AS team_id',
-      'userteam.team_name AS team_name',
-      'userteam.user_id1 AS user_id1',
+      'ut.team_id AS team_id',
+      'ut.team_name AS team_name',
+      'ut.user_id1 AS user_id1',
       'COALESCE(CONCAT(u.firstName," ", u.lastName), "") AS full_name1',
-      'userteam.user_id2 AS user_id2',
+      'ut.user_id2 AS user_id2',
       'COALESCE(CONCAT(u1.firstName," ", u1.lastName), "") AS full_name2',
     ])
-    .leftJoin(User, "u", "u.id = userteam.user_id1")
-     .leftJoin(User, "u1", "u1.id = userteam.user_id2")
+    .leftJoin(User, "u", "u.id = ut.user_id1")
+     .leftJoin(User, "u1", "u1.id = ut.user_id2")
      .execute()
 
    // SELECT ut.team_id, ut.user_id1, ut.user_id2, ut.team_name, COALESCE(CONCAT(u.firstName,' ', u.lastName), '') as full_name1, COALESCE(CONCAT(u1.firstName,' ', u1.lastName), '') as full_name2 FROM user_team ut LEFT JOIN users u ON u.id = ut.user_id1 LEFT JOIN users u1 ON u1.id = ut.user_id2
