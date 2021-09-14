@@ -33,6 +33,13 @@ export class AuthController {
     return await this.authService.createToken(user);
   }
 
+  @Get('userTeam')
+  @ApiResponse({ status: 201, description: 'Successful Get Users' }) 
+  async team(): Promise<any> {
+    const user = await this.userService.team();
+    return await user;
+  }
+
   @ApiBearerAuth()
   @UseGuards(AuthGuard())
   @Get('me')
