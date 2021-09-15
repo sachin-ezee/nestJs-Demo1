@@ -32,3 +32,9 @@ export class TodosFillableFields {
   description: string;
   is_done: boolean;
 }
+
+export class UpdateTodosFillableFields {
+  title: string;
+  description: string;
+  is_done: boolean;
+}
