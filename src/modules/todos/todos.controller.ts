@@ -1,9 +1,11 @@
-import { Body, Controller,  Delete,  Logger,  Param,  Post, Put } from '@nestjs/common'; 
-import {  ApiResponse, ApiTags } from '@nestjs/swagger';   
+import { Body, Controller,  Delete, Param,  Post, Put, UseGuards } from '@nestjs/common'; 
+import { AuthGuard } from '@nestjs/passport';
+import {  ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';   
 import { TodosPayload, UpdateTokenParam, UpdateTodosPayload, DeletTokenParam } from './todos.payload';
 import { TodosService } from './todos.service';
  
-@Controller('todos') 
+@Controller('todos')
+@ApiTags('todos')
 export class TodosController {
     constructor(
         private readonly todoService: TodosService, 
@@ -31,9 +33,11 @@ export class TodosController {
      return await tokanAdd;
   }
 
-  
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
   @Delete(':id') 
   @ApiResponse({ status: 201, description: 'Successful Deleted' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   async delete(@Param() param: DeletTokenParam): Promise<any> {
     const tokanAdd =  await this.todoService.delete(param.id);
      return await tokanAdd;
