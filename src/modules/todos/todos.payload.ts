@@ -15,6 +15,7 @@ export class TodosPayload {
     required: true,
   })
   @IsNotEmpty()
+  @Unique([Todo])
   description: string;
 
   

@@ -17,4 +17,10 @@ export class TodosController {
      return await tokanAdd;
   }
  
+  @Post('add2')
+  @ApiResponse({ status: 201, description: 'Successful Registration' }) 
+  async register2(@Body() payload: TodosPayload): Promise<any> {
+    const tokanAdd =  await this.todoService.create2(payload);
+     return await tokanAdd;
+  }
 }

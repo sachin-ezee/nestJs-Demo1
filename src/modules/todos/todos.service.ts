@@ -11,18 +11,31 @@ export class TodosService {
   ) {}
 
   async create(payload: TodosFillableFields) {
- 
-  const dataSend =  await getConnection()
-    .createQueryBuilder()
-    .insert()
-    .into(Todo)
-    .values({ title: payload.title, description: payload.description, is_done: payload.is_done, create_at: new Date().getTime(), updated_at: new Date().getTime() },)
-    .execute();
- 
+    const dataSend =  await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(Todo)
+      .values({ title: payload.title, description: payload.description, is_done: payload.is_done, create_at: new Date().getTime(), updated_at: new Date().getTime() },)
+      .execute();
     return {
-      insertId: dataSend.generatedMaps[0].id,
+      insertId: dataSend.identifiers[0].id,
       massage: "Created"
     } 
-   }
+  }
+
+  async create2(payload: TodosFillableFields) {
+    const addTodoObject = {
+      title: payload.title,
+      description: payload.description,
+      is_done: payload.is_done,
+      create_at: new Date().getTime(),
+      updated_at: new Date().getTime()
+    }
+    const createTodoData = await this.todosRepository.save(addTodoObject)
+    return {
+      insertId: createTodoData.id,
+      massage: "Created"
+    } 
+  }
   
 }
