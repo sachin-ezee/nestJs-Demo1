@@ -6,6 +6,7 @@ import { CommonModule } from './../common';
 import { ConfigModule, ConfigService } from './../config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { AppService } from './app.service';
     AuthModule,
     TodosModule,
     CommonModule,
+   
   ],
   controllers: [AppController],
   providers: [AppService],

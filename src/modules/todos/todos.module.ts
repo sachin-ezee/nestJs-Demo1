@@ -4,9 +4,10 @@ import { TodosController } from './todos.controller';
 import { TodosService } from './todos.service';
 import { Todo } from './todos.entity';
 import { PassportModule } from '@nestjs/passport';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Todo]), PassportModule.register({ defaultStrategy: 'jwt' }),],
+  imports: [TypeOrmModule.forFeature([Todo]), PassportModule.register({ defaultStrategy: 'jwt' }),   ],
     controllers: [TodosController],
     providers: [TodosService],
   })
