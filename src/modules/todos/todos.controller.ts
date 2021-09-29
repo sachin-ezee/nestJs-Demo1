@@ -43,24 +43,23 @@ export class TodosController {
     schema: {
       type: 'object',
       properties: {
-        imageId: { type: 'number'},
+        // imageId: { type: 'number'},
         imageName: { type: 'string' }, 
         file: {
           type: 'file',
         },
       },
     },
-  })
-  
+  }) 
   @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
-      destination: 'assets'
+      destination: 'assets/profile'
       , filename: (req, file, cb) => {
-        // Generating a 32 random chars long string
-        // const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
+        // Generating a 4 random chars long string
+        const randomName = Array(4).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
         // Calling the callback passing the random name generated with the original extension name
-        // cb(null, `${randomName}${extname(file.originalname)}`)
-        cb(null, `${file.originalname}`)
+        cb(null, `${randomName}${file.originalname}${extname(file.originalname)}`)
+       // cb(null, `${file.originalname}`)
       }
     })
   }))
