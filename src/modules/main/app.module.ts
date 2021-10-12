@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from './../config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MulterModule } from '@nestjs/platform-express';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -30,7 +31,7 @@ import { MulterModule } from '@nestjs/platform-express';
     AuthModule,
     TodosModule,
     CommonModule,
-   
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],

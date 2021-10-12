@@ -562,7 +562,7 @@
     "semver" "^7.3.4"
     "tar" "^6.1.0"
 
-"@nestjs/common@^6.0.0 || ^7.0.0 || ^8.0.0", "@nestjs/common@^7.0.8 || ^8.0.0", "@nestjs/common@^8.0.0", "@nestjs/common@^8.0.8":
+"@nestjs/common@^6.0.0 || ^7.0.0 || ^8.0.0", "@nestjs/common@^6.10.11 || ^7.0.0 || ^8.0.0", "@nestjs/common@^7.0.8 || ^8.0.0", "@nestjs/common@^8.0.0", "@nestjs/common@^8.0.8":
   "integrity" "sha512-dodw4GEcdPaLw/1QKMuqy31WtFyl8bqrxkkEL3y6rDVdk5Mm6xdCoBibKigZXjwzC7vL7BN6kK2Tlnak7v7kHw=="
   "resolved" "https://registry.npmjs.org/@nestjs/common/-/common-8.0.8.tgz"
   "version" "8.0.8"
@@ -572,7 +572,7 @@
     "tslib" "2.3.1"
     "uuid" "8.3.2"
 
-"@nestjs/core@^8.0.0", "@nestjs/core@^8.0.8":
+"@nestjs/core@^7.0.0 || ^8.0.0", "@nestjs/core@^8.0.0", "@nestjs/core@^8.0.8":
   "integrity" "sha512-KD6A0EShox5GpMakZeNz1zslZYnqOnXI4o3X02FFTv5XkSqA3t9bS6lZueuf5WAfaGojizosHqka96K85PdNBg=="
   "resolved" "https://registry.npmjs.org/@nestjs/core/-/core-8.0.8.tgz"
   "version" "8.0.8"
@@ -613,6 +613,14 @@
     "express" "4.17.1"
     "multer" "1.4.3"
     "tslib" "2.3.1"
+
+"@nestjs/schedule@^1.0.1":
+  "integrity" "sha512-EU2tB4rxuEgum8JlorAFvXkU982EYZm/IBa7n6kgkyps5BbxQSFf7iR1CLkP9zODO9ApZTWk5z3q9L3O7vrkoQ=="
+  "resolved" "https://registry.npmjs.org/@nestjs/schedule/-/schedule-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "cron" "1.7.2"
+    "uuid" "8.3.2"
 
 "@nestjs/swagger@^5.1.0":
   "integrity" "sha512-+/Edyzkh3n9Kkw72zzRDHF1ZWK1PlvkkM9lK9fjYaiMjEZ3oaCiSjdwd88vAVX6UIP0nvQkT5VNpSLYU+GK5yg=="
@@ -783,6 +791,14 @@
   "integrity" "sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog=="
   "resolved" "https://registry.npmjs.org/@types/cookiejar/-/cookiejar-2.1.2.tgz"
   "version" "2.1.2"
+
+"@types/cron@^1.7.3":
+  "integrity" "sha512-iPmUXyIJG1Js+ldPYhOQcYU3kCAQ2FWrSkm1FJPoii2eYSn6wEW6onPukNTT0bfiflexNSRPl6KWmAIqS+36YA=="
+  "resolved" "https://registry.npmjs.org/@types/cron/-/cron-1.7.3.tgz"
+  "version" "1.7.3"
+  dependencies:
+    "@types/node" "*"
+    "moment" ">=2.14.0"
 
 "@types/eslint-scope@^3.7.0":
   "integrity" "sha512-SCFeogqiptms4Fg29WpOTk5nHIzfpKCemSN63ksBQYKTcXoJEmJagV+DhVmbapZzY4/5YaOV1nZwrsU79fFm1g=="
@@ -1928,6 +1944,13 @@
   "integrity" "sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ=="
   "resolved" "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
   "version" "1.1.1"
+
+"cron@1.7.2":
+  "integrity" "sha512-+SaJ2OfeRvfQqwXQ2kgr0Y5pzBR/lijf5OpnnaruwWnmI799JfWr2jN2ItOV9s3A/+TFOt6mxvKzQq5F0Jp6VQ=="
+  "resolved" "https://registry.npmjs.org/cron/-/cron-1.7.2.tgz"
+  "version" "1.7.2"
+  dependencies:
+    "moment-timezone" "^0.5.x"
 
 "cross-spawn@^7.0.2", "cross-spawn@^7.0.3":
   "integrity" "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w=="
@@ -3898,6 +3921,18 @@
   "integrity" "sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw=="
   "resolved" "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   "version" "1.0.4"
+
+"moment-timezone@^0.5.x":
+  "integrity" "sha512-PTc2vcT8K9J5/9rDEPe5czSIKgLoGsH8UNpA4qZTVw0Vd/Uz19geE9abbIOQKaAQFcnQ3v5YEXrbSc5BpshH+w=="
+  "resolved" "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.33.tgz"
+  "version" "0.5.33"
+  dependencies:
+    "moment" ">= 2.9.0"
+
+"moment@>= 2.9.0", "moment@>=2.14.0":
+  "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
+  "version" "2.29.1"
 
 "ms@^2.1.1", "ms@2.1.2":
   "integrity" "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
