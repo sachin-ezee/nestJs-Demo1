@@ -37,18 +37,20 @@ export class ImagesController {
         // Generating a 4 random chars long string
         const randomName = Array(4).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
         // Calling the callback passing the random name generated with the original extension name
-        cb(null, `${randomName}${file.originalname}${extname(file.originalname)}`)
+        cb(null, `${randomName}${file.originalname}`)
        // cb(null, `${file.originalname}`)
       }
     })
   }))
   @ApiResponse({ status: 201, description: 'Successful Uploaded' })
-  async imageUpdate(@UploadedFile() file: Express.Multer.File, @Body() parm): Promise<any> {
-    console.log(parm.imageName);
-    console.log(file);
-    //  const tokanAdd =  await this.todoService.createImageContent(contentData);
-    // console.log(tokanAdd);
-    //  return await true;
+  async imageUpdate(@UploadedFile() file: Express.Multer.File, @Body() parm): Promise<any> { 
+    const  contentData = {
+      imageName: parm.imageName,
+      imageUrl: file.path,
+    }
+     const imageAdd =  await this.imageService.createImageContent(contentData);
+  
+    return await imageAdd;
   }
 
   

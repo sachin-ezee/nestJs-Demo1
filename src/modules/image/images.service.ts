@@ -15,13 +15,23 @@ export class FileExtender implements NestInterceptor {
 export class ImagesService {
   constructor(
     @InjectRepository(Images)
-    private readonly todosRepository: Repository<Images>,
+    private readonly imagesRepository: Repository<Images>,
   ) {}
   
   async createImageContent(contentData) { 
-    const contentFile = contentData
-    console.log(contentFile)
-    return contentFile;
+    const contentFile = contentData 
+     const addImageObject = {
+      imageName: contentData.imageName,
+      imageUrl: contentData.imageUrl, 
+      create_at: new Date().getTime(),
+      updated_at: new Date().getTime()
+    }
+    const createImageData = await this.imagesRepository.save(addImageObject)
+    return {
+      insertId: createImageData.imageId,
+      imageUrl: createImageData.imageUrl,
+      massage: "Image Added"
+    }  
   }
    
 }
