@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { AuthModule } from './../auth';
 import { TodosModule } from './../todos';
+import { ImageModule } from './../image';
 import { CommonModule } from './../common';
 import { ConfigModule, ConfigService } from './../config';
 import { AppController } from './app.controller';
@@ -27,6 +28,7 @@ import { ScheduleModule } from '@nestjs/schedule';
         } as TypeOrmModuleAsyncOptions;
       },
     }),
+    ImageModule,
     ConfigModule,
     AuthModule,
     TodosModule,

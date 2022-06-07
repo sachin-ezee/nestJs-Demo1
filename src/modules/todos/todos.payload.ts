@@ -70,19 +70,4 @@ export class DeletTokenParam {
   @IsNumberString({}, { message: 'Id Must be interger' })
   id: number
 }
-
-export interface ImageRequest {
-  files: {
-    file: {
-      size?: number
-      mimetype?: string
-      width?: string
-      height?: string
-      name?: string
-      mv?: (arg0: string) => unknown
-    }
-  }
-  body: {
-    imageName: string
-  }
-}
+ 

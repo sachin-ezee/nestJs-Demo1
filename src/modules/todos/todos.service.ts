@@ -1,17 +1,9 @@
-import { CallHandler, ExecutionContext, Injectable, Logger, NestInterceptor, NotAcceptableException } from '@nestjs/common';
+import {  Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Observable } from 'rxjs';
-import { Repository, getConnection } from 'typeorm';
+ import { Repository, getConnection } from 'typeorm';
 import { Todo, TodosFillableFields, UpdateTodosFillableFields } from './todos.entity';
 
 @Injectable()
-export class FileExtender implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const req = context.switchToHttp().getRequest();
-    req.file['imageName'] = req.body.imageName; 
-    return next.handle();
-  }
-}
 export class TodosService {
   constructor(
     @InjectRepository(Todo)
@@ -65,12 +57,6 @@ export class TodosService {
     return { 
       massage: msg
     }
-  }
-
-  async createImageContent(contentData) { 
-    const contentFile = contentData
-    console.log(contentFile)
-    return contentFile;
   }
   
   async delete(id: number) {
